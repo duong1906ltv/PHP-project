@@ -10,6 +10,8 @@
             <th>Tags</th>
             <th>Comments</th>
             <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -42,17 +44,6 @@
             echo "</tr>";
         }
     ?>
-        <tr>
-            <th>10</th>
-            <th>Edwin Diaz</th>
-            <th>Bootstrap framework</th>
-            <th>Bootstrap</th>
-            <th>Status</th>
-            <th>Image</th>
-            <th>Tags</th>
-            <th>Comments</th>
-            <th>Date</th>
-        </tr>
     </tbody>
 </table> 
 <?php
