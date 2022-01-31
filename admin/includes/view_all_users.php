@@ -30,6 +30,7 @@
             echo "<td>{$user_email}</td>";
             echo "<td>{$user_role}</td>";
             echo "<td><img width='100' src='../images/{$user_image}' alt='image'/></td>";
+            echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
             echo "</tr>";
         }
     ?>
@@ -40,12 +41,12 @@
 if (isset($_GET['delete'])) {
     $the_post_id = $_GET['delete'];
 
-    $query = "DELETE FROM posts WHERE post_id = {$the_post_id} ";
+    $query = "DELETE FROM users WHERE user_id = {$the_user_id} ";
     $delete_query = mysqli_query($connection, $query);
 
     confirmQuery($delete_query);
 
-    header("Location: posts.php");
+    header("Location: users.php");
 }
 
 ?>
