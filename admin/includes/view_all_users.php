@@ -7,36 +7,29 @@
             <th>Lastname</th>
             <th>Email</th>
             <th>Role</th>
-            <th>Date</th>
+            <th>Image</th>
         </tr>
     </thead>
     <tbody>
     <?php
-        $query = "SELECT * FROM posts ";
-        $select_categories = mysqli_query($connection,$query);
-        while($row = mysqli_fetch_assoc($select_categories)){
-            $post_id = $row['post_id'];
-            $post_title = $row['post_title'];
-            $post_author = $row['post_author'];
-            $post_date = $row['post_date'];
-            $post_category_id = $row['post_category_id'];
-            $post_status = $row['post_status'];
-            $post_image = $row['post_image'];
-            $post_comment_count = $row['post_comment_count'];
-            $post_title = $row['post_title'];
-            $post_tags = $row['post_tags'];
+        $query = "SELECT * FROM users ";
+        $select_users = mysqli_query($connection,$query);
+        while($row = mysqli_fetch_assoc($select_users)){
+            $user_id = $row['user_id'];
+            $username = $row['username'];
+            $user_firstname = $row['user_firstname'];
+            $user_lastname = $row['user_lastname'];
+            $user_image = $row['user_image'];
+            $user_role = $row['user_role'];
+            $user_email = $row['user_email'];
             echo "<tr>";
-            echo "<td>{$post_id}</td>";
-            echo "<td>{$post_author}</td>";
-            echo "<td>{$post_title}</td>";
-            echo "<td>{$post_category_id}</td>";
-            echo "<td>{$post_status}</td>";
-            echo "<td><img width='100' src='../images/{$post_image}' alt='image'/></td>";
-            echo "<td>{$post_tags}</td>";
-            echo "<td>{$post_comment_count}</td>";
-            echo "<td>{$post_date}</td>";
-            echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-            echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+            echo "<td>{$user_id}</td>";
+            echo "<td>{$username}</td>";
+            echo "<td>{$user_firstname}</td>";
+            echo "<td>{$user_lastname}</td>";
+            echo "<td>{$user_email}</td>";
+            echo "<td>{$user_role}</td>";
+            echo "<td><img width='100' src='../images/{$user_image}' alt='image'/></td>";
             echo "</tr>";
         }
     ?>
