@@ -1,4 +1,6 @@
 <?php include "db.php";?>
+<?php include session_start();?>
+
 
 <?php
 
@@ -25,6 +27,10 @@ if(isset($_POST['login'])){
         header("Location: ../index.php");
     }
     else if ($username == $db_username && $password == $db_user_password){
+        $_SESSION['username'] = $db_username;
+        $_SESSION['user_firstname'] = $db_user_firstname;
+        $_SESSION['user_lastname'] = $db_user_lastname;
+        $_SESSION['user_role'] = $db_user_role;
         header("Location: ../admin");
     }
     else{
