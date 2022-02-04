@@ -66,9 +66,9 @@ if (isset($_POST['checkBoxArray'])){
     </div>
     <div class="col-xs-4">
         <input type="submit" name="submit" class="btn btn-success" value="Apply">
-        <a class="btn btn-primary" href="add_post.php">Add New</a>
+        <a href="posts.php?source=add_post" class="btn btn-primary">Add New</a>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
@@ -81,6 +81,7 @@ if (isset($_POST['checkBoxArray'])){
             <th>Tags</th>
             <th>Comments</th>
             <th>Date</th>
+            <th>View Post</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -102,7 +103,7 @@ if (isset($_POST['checkBoxArray'])){
             $post_tags = $row['post_tags'];
             echo "<tr>";
             ?>
-                <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value=<?php echo $post_id ?>></td>";
+                <td><input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value=<?php echo $post_id; ?>></td>
             <?php
             echo "<td>{$post_id}</td>";
             echo "<td>{$post_author}</td>";
@@ -113,6 +114,7 @@ if (isset($_POST['checkBoxArray'])){
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td>{$post_date}</td>";
+            echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
             echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
