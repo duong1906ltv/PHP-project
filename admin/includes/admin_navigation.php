@@ -62,7 +62,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
                     </li>
                 </ul>
