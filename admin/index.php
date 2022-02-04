@@ -141,6 +141,25 @@
                     </div>
                 </div>
                 <!-- /.row -->
+                <?php
+
+                $query = "SELECT * FROM posts WHERE post_status = 'published' ";
+                $select_all_published_posts = mysqli_query($connection, $query);
+                $post_published_count = mysqli_num_rows($select_all_published_posts);
+
+                $query = "SELECT * FROM posts WHERE post_status = 'draft' ";
+                $select_all_draft_posts = mysqli_query($connection, $query);
+                $post_draft_count = mysqli_num_rows($select_all_draft_posts);
+
+                $query = "SELECT * FROM comments WHERE comment_status = 'unapproved' ";
+                $unapproved_comments_query = mysqli_query($connection, $query);
+                $unapproved_comment_count = mysqli_num_rows($unapproved_comments_query);
+
+                $query = "SELECT * FROM users WHERE user_role = 'subscriber' ";
+                $select_all_subscribers = mysqli_query($connection, $query);
+                $subscriber_count = mysqli_num_rows($select_all_subscribers);
+
+                ?>
                 <div class="row">
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
@@ -149,17 +168,23 @@
 
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([
-                    ['Year', 'Sales', 'Expenses', 'Profit'],
-                    ['2014', 1000, 400, 200],
-                    ['2015', 1170, 460, 250],
-                    ['2016', 660, 1120, 300],
-                    ['2017', 1030, 540, 350]
+                    ['Data', 'Count'],
+                    <?php
+
+                    $element_text = ['All Posts', 'Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
+                    $element_count = [$post_count, $post_published_count, $post_draft_count, $comment_count, $unapproved_comment_count, $user_count, $subscriber_count, $category_count];
+
+                    for ($i = 0; $i < 7; $i++) {
+                        echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
+                    }
+
+                    ?>
                     ]);
 
                     var options = {
                     chart: {
-                        title: 'Company Performance',
-                        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                        title: '',
+                        subtitle: '',
                     }
                     };
                     var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
