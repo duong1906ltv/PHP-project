@@ -62,6 +62,8 @@ if (isset($_POST['checkBoxArray'])){
             <option value="published">Publish</option>
             <option value="draft">Draft</option>
             <option value="delete">Delete</option>
+            <option value="clone">Clone</option>
+            <option value="reset">Reset</option>
         </select>
     </div>
     <div class="col-xs-4">
@@ -88,7 +90,7 @@ if (isset($_POST['checkBoxArray'])){
     </thead>
     <tbody>
     <?php
-        $query = "SELECT * FROM posts ";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC";
         $select_categories = mysqli_query($connection,$query);
         while($row = mysqli_fetch_assoc($select_categories)){
             $post_id = $row['post_id'];
