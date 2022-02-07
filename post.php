@@ -1,5 +1,6 @@
 <?php include "includes/db.php"?>
 <?php include "includes/header.php"?>
+<?php include "includes/functions.php"?>
 
     <!-- Navigation -->
     <?php include "includes/navigation.php"?>
@@ -20,12 +21,14 @@
                 if (isset($_GET['p_id'])) {
                     $the_post_id = $_GET['p_id'];
                     
+                    if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
                     $view_query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $the_post_id ";
                     $send_query = mysqli_query($connection, $view_query);
                     
                     if (!$send_query){
                         die("query failed");
                     }
+                }
                 
 
                 $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
@@ -54,13 +57,15 @@
                     <hr>
                     <?php  
                     }
-                }else{
+                }
+                else{
                     header("Location: index.php");
                 }
                 ?>
                 <!-- Blog Comments -->
                 <?php
 
+                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if (isset($_POST['create_comment'])) {
                     $the_post_id = $_GET['p_id'];
 
@@ -88,13 +93,15 @@
                     } else {
                         echo "<script>alert('Fields cannot be empty')</script>";
                     }
+                    }
+                    redirect("post.php?p_id=$the_post_id");
                 }
-
                 ?>
 
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Leave a Comment:</h4>
+                    <input type="hidden" value="<?= isset($the_post_id) ?? null ?>">
                     <form action="" method="post" role="form">
                         <div class="form-group">
                             <label for="author">Author</label>
