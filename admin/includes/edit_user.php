@@ -43,8 +43,8 @@ if (isset($_GET['edit_user'])) {
             $db_user_password = $row['user_password'];
 
             if ($user_password != $db_user_password) {
-                echo $user_password;
-                echo $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 10));
+                $user_password;
+                $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 10));
                 $query .= ", user_password = '{$hashed_password}' ";
             }
         }
